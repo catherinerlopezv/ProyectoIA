@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-image: url('emoji.jpg');
+      background-image: url('/static/emoji.jpg'); 
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -15,7 +15,7 @@
     .card {
       border-radius: 20px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      background-color: rgba(255, 255, 255, 0.95); /* Agrega opacidad para mejor visibilidad */
+      background-color: rgba(255, 255, 255, 0.95);
     }
     .emoji-list {
       display: flex;
@@ -28,18 +28,18 @@
       font-size: 24px;
     }
   </style>
-  
 </head>
 <body>
   <div class="container py-5 d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card p-4 bg-white" style="max-width: 600px; width: 100%;">
+    <div class="card p-4" style="max-width: 600px; width: 100%;">
       <h3 class="text-center mb-4">Clasificador de Tweets</h3>
 
       <div class="d-flex">
         <div class="flex-grow-1">
           <label for="tweetInput" class="form-label visually-hidden">Tweet</label>
           <textarea id="tweetInput" class="form-control mb-3" rows="3" placeholder="Ingresa un tweet..."></textarea>
-          <button id="classifyBtn" class="btn btn-primary w-100">Analizar</button>
+          <button id="classifyBtn" class="btn btn-primary w-100 mb-2">Analizar Sentimiento</button>
+          <button id="preprocessBtn" class="btn btn-secondary w-100">Inicializar entorno</button>
         </div>
         <div class="emoji-list">
           <span>😞</span>
@@ -59,11 +59,13 @@
         <h6>Resultado:</h6>
         <p><strong>Sentimiento:</strong> <span id="sentiment">-</span></p>
         <p><strong>Tiempo de respuesta:</strong> <span id="responseTime">-</span> ms</p>
+        <p id="status" class="text-muted"></p>
       </div>
     </div>
   </div>
 
   <script>
+    // Clasificar tweet
     document.getElementById('classifyBtn').addEventListener('click', async () => {
       const tweet = document.getElementById('tweetInput').value;
       const sentimentEl = document.getElementById('sentiment');
@@ -94,6 +96,22 @@
         sentimentEl.textContent = 'Error al conectar con el backend';
         responseTimeEl.textContent = '-';
         console.error(error);
+      }
+    });
+
+    // Preprocesar tweets
+    document.getElementById('preprocessBtn').addEventListener('click', async () => {
+      const status = document.getElementById('status');
+      status.textContent = 'Procesando...';
+
+      try {
+        const res = await fetch('/preprocesar', {
+          method: 'POST'
+        });
+        const data = await res.json();
+        status.textContent = data.mensaje;
+      } catch (error) {
+        status.textContent = '❌ Error de conexión con Flask.';
       }
     });
   </script>
