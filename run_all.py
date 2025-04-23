@@ -5,7 +5,8 @@ def ejecutar_preprocesamiento():
         "01Limpieza.ipynb",
         "02Tokenizacion.ipynb",
         "03Lematizacion.ipynb",
-        "04vectorizacion.ipynb"
+        "04vectorizacion.ipynb",
+        "NaiveBayes.ipynb"
     ]
 
     for nb in notebooks:

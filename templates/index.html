@@ -79,12 +79,12 @@
       const start = performance.now();
 
       try {
-        const response = await fetch('http://localhost:5000/clasificar', {
+        const response = await fetch('http://localhost:5000/predict', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ texto: tweet })
+          body: JSON.stringify({ texto: tweet }) // ← nombre que espera tu backend
         });
 
         const result = await response.json();
