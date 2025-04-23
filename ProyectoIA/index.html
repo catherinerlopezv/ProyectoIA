@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clasificador de Tweets - Naive Bayes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+    }
+    label, textarea, button {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    textarea {
+      height: 100px;
+    }
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clasificador de Tweets con Naive Bayes</h1>
+  
+  <label for="tweet">Ingresa tu tweet:</label>
+  <textarea id="tweet"></textarea>
+  <button onclick="clasificarTweet()">Clasificar</button>
+  
+  <h2>Resultado:</h2>
+  <div id="resultado"></div>
+
+  <h2>Métricas del Modelo:</h2>
+  <pre id="metricas">Cargando...</pre>
+
+  <script>
+    // Mostrar métricas al cargar
+    fetch('http://127.0.0.1:5000/metrics')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('metricas').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById('metricas').textContent = 'No se pudo cargar las métricas. Asegúrate que Flask esté corriendo.';
+      });
+
+    function clasificarTweet() {
+      const texto = document.getElementById("tweet").value;
+
+      fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: texto })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("resultado").textContent = `Sentimiento predicho: ${data.prediccion}`;
+      })
+      .catch(() => {
+        document.getElementById("resultado").textContent = "Error al clasificar el tweet."
+      });
+    }
+  </script>
+</body>
+</html>
