@@ -8,22 +8,55 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 2rem;
+      padding: 8rem;
       max-width: 800px;
       margin: auto;
-      background-color: #f4f4f4;
-    }
-    h1 {
-      text-align: center;
-    }
-    label, textarea, button {
-      display: block;
-      width: 100%;
-      margin-top: 1rem;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('emoji.jpg');
     }
     textarea {
-      height: 100px;
-    }
+    width: 100%;
+    height: 100px;
+    resize: none;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .emoji-list {
+  display: flex;
+  flex-direction: row; /* Horizontal */
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 38px; /* 1 cm aprox */
+}
+
+.emoji-list svg {
+  width: 38px;
+  height: 38px;
+}
+
+  h1 {
+    white-space: nowrap;
+    padding: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    margin-top: 10rem;
+    padding-top: 2rem;
+  }
     pre {
       background: #222;
       color: #0f0;
@@ -33,11 +66,37 @@
   </style>
 </head>
 <body>
-  <h1>Clasificador de Tweets con Naive Bayes</h1>
+  <div class="container py-5 d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-2 mt-5" style="max-width: 900px; width: 100%;">
+      <h1 class="mb-4">Clasificador de Tweets con Naive Bayes</h1>
+
+      <div class="d-flex">
+        <!-- Columna izquierda: textarea + botón -->
+        <div class="flex-grow-1">
+          <label for="tweet">Ingresa tu tweet:</label>
+          <textarea id="tweet"></textarea>
+          <button onclick="clasificarTweet()">Clasificar</button>
+        </div>
+
+        <!-- Columna derecha: emojis -->
+        <div class="emoji-list">
+          <span>😞</span>
+          <span>😐</span>
+          <span>😊</span>
+          <span>
+            <svg viewBox="0 0 32 32">
+              <rect width="6" height="10" x="2" y="20" fill="#dc3545" />
+              <rect width="6" height="15" x="12" y="15" fill="#6c757d" />
+              <rect width="6" height="22" x="22" y="8" fill="#0d6efd" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   
-  <label for="tweet">Ingresa tu tweet:</label>
-  <textarea id="tweet"></textarea>
-  <button onclick="clasificarTweet()">Clasificar</button>
+ 
   
   <h2>Resultado:</h2>
   <div id="resultado"></div>
