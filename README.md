@@ -1,4 +1,4 @@
-# Proyecto: Clasificador de Sentimientos usando Naïve Bayes
+# Proyecto: Clasificador de Sentimientos Tweets usando Naïve Bayes
 
 Este proyecto implementa un clasificador de sentimientos de tweets utilizando el algoritmo de Naïve Bayes desde cero, sin bibliotecas externas para el modelo.
 
