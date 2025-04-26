@@ -1,5 +1,7 @@
 # ProyectoIA
 
+## RAMA A UTILIZAR : ENTRENAMIENTO
+
 # ProyectoIA - Clasificador de Sentimientos con Naive Bayes
 
 ## 📁 Estructura
