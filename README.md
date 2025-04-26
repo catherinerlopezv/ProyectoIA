@@ -73,4 +73,4 @@ Y listo: podrás clasificar tweets y ver métricas del modelo.
 
 ## Flujo
 
-    ![Flujo del proyecto](https://github.com/catherinerlopezv/ProyectoIA/Flujo.png)
+    ![Flujo del proyecto](https://github.com/catherinerlopezv/ProyectoIA/blob/main/Flujo.png)
