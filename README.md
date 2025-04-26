@@ -13,6 +13,7 @@ Este proyecto implementa un clasificador de sentimientos de tweets utilizando el
 - `index.html` — Interfaz web para la clasificación de tweets.
 - `startup.sh` — Script para iniciar automáticamente el backend y frontend.
 - `modelo/` — (opcional) Carpeta donde se guarda el modelo entrenado o datos procesados.
+- `Dataset` - Dataset Entrenado 03Lematized.csv
 
 ## Instalación
 
